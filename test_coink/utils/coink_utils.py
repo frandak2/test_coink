@@ -82,5 +82,51 @@ def Segment_assignment(df):
         r'5[4-5]': 'champions'
     }
     df['Segment'] = df['Total_Score'].replace(seg_map, regex=True)
+    return df
 
+
+def assignment_label(df):
+    cols = { 
+        'Education' : {
+            r'1' :'Below College',
+            r'2' :'College',
+            r'3' :'Bachelor',
+            r'4' :'Master',
+            r'5' :'Doctor'},
+        'EnvironmentSatisfaction':{
+            r'1' :'Low',
+            r'2' :'Medium',
+            r'3' :'High',
+            r'4' :'Very High'},
+        'JobInvolvement':{
+            r'1' :'Low',
+            r'2' :'Medium',
+            r'3' :'High',
+            r'4' :'Very High'},
+        'JobSatisfaction':{
+            r'1' :'Low',
+            r'2' :'Medium',
+            r'3' :'High',
+            r'4' :'Very High'},
+        'PerformanceRating':{
+            r'1' :'Low',
+            r'2' :'Good',
+            r'3' :'Excellent',
+            r'4' :'Outstanding'},
+        'RelationshipSatisfaction':
+            {r'1' :'Low',
+            r'2' :'Medium',
+            r'3' :'High',
+            r'4' :'Very High'},
+        'WorkLifeBalance':
+            {r'1' :'Bad',
+            r'2' :'Good',
+            r'3' :'Better',
+            r'4' :'Best'}
+        }
+    
+    for col in list(cols.keys()):
+        print(col)
+        df[col] = df[col].astype(str).replace(cols[col], regex=True)
+        
     return df
